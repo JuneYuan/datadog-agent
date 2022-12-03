@@ -156,6 +156,7 @@ func runAgent(ctx context.Context, cliParams *cliParams, config config.Component
 		Handler: http.DefaultServeMux,
 	}
 	go func() {
+		log.Debugf("[JUNE] dogstatsd is listening on port: %v", port)
 		if err := dogstatsdStats.ListenAndServe(); err != nil && err != http.ErrServerClosed {
 			log.Errorf("Error creating dogstatsd stats server on port %d: %s", port, err)
 		}

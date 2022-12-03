@@ -301,6 +301,7 @@ func (t *HTTPTransaction) internalProcess(ctx context.Context, client *http.Clie
 	logURL := scrubber.ScrubLine(url) // sanitized url that can be logged
 
 	req, err := http.NewRequest("POST", url, reader)
+	log.Debugf("internalProcess(): http POST url=%q, payload=%q", url, string(t.Payload.GetContent()))
 	if err != nil {
 		log.Errorf("Could not create request for transaction to invalid URL %q (dropping transaction): %s", logURL, err)
 		transactionsErrors.Add(1)
